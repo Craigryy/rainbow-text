@@ -1,5 +1,9 @@
 name: Test and Lint
 
+
+on:
+  workflow_call: 
+
 jobs:
   python:
     name: Python
