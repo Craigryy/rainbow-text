@@ -1,0 +1,25 @@
+name: Test and Lint
+
+jobs:
+  python:
+    name: Python
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      - name: Test
+        run: |
+          docker compose run --rm app pytest  # Assuming you are using pytest for testing
+
+      - name: Python flake8
+        run: |
+          docker compose run --rm app flake8  # Linting with flake8
