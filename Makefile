@@ -18,3 +18,11 @@ clean:
 
 test:
 	cd app && pytest
+
+setup-init:
+	cd infra && aws-vault exec craigryy -- sudo -E  docker compose run --rm terraform -chdir=setup init
+
+setup-all:
+	cd infra && aws-vault exec craigryy -- sudo -E  docker compose run --rm terraform -chdir=setup fmt
+	cd infra && aws-vault exec craigryy -- sudo -E  docker compose run --rm terraform -chdir=setup validate
+	cd infra && aws-vault exec craigryy -- sudo -E  docker compose run --rm terraform -chdir=setup apply
