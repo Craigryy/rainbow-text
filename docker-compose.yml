@@ -1,27 +1,12 @@
-
 services:
   app:
     build:
       context: .
-    restart: always
-    volumes:
-      - static-data:/vol/web/static
-      - media-data:/vol/web/media
-
-
-  proxy:
-    build:
-      context: ./proxy
-    restart: always
-    depends_on:
-      - app
+      args:
+        - DEV=true
     ports:
-      - "80:5000"  
+      - "8000:8000"
     volumes:
-      - static-data:/vol/web/static  # Corrected volume path for static files
-      - media-data:/vol/web/media   # Corrected volume path for media files
-
-volumes:
-  postgres-data:
-  static-data:
-  media-data:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"

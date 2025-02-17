@@ -8,7 +8,7 @@ run:
 	@echo "Running autopep8..."
 	cd app && $(AUTOPEP8) --in-place --recursive
 	@echo "Running flake8..."
-	cd app && $(FLAKE8)
+	cd app && sudo docker compose run --rm app -c sh "flake8"
 
 # Add a clean target if you want to remove unwanted files (optional)
 clean:

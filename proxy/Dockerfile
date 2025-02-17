@@ -21,9 +21,8 @@ ENV APP_PORT=9000
 # Set the user to root for modifying necessary directories
 USER root
 
-# Create necessary directories for static and media files, set permissions 
+# Create necessary directories for static files, set permissions 
 #Create a directory for static files
-# Create a directory for media files
 # Set proper permissions
 # Change ownership to Nginx user
 # Ensure the config file exists
